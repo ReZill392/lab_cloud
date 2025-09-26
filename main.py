@@ -19,7 +19,7 @@ def index():
     try:
         conn = get_conn()
         cur = conn.cursor()
-        cur.execute("SELECT image_name, description, image_data FROM images LIMIT 5;")
+        cur.execute("SELECT image_name, description, image_data FROM images;")
         rows = cur.fetchall()
 
         if not rows:
