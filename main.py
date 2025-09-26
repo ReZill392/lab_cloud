@@ -6,10 +6,7 @@ import base64
 
 app = FastAPI()
 
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql://imguser:KheeYes321@db:5432/imagedb"
-)
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://imguser:KheeYes321@db:5432/imagedb")
 
 conn = psycopg2.connect(DATABASE_URL)
 
