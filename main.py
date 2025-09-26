@@ -7,7 +7,7 @@ app = FastAPI()
 
 def get_conn():
     return psycopg2.connect(
-        host="db", 
+        host="10.148.0.2", 
         database="imagedb",
         user="imguser",
         password="KheeYes321"
