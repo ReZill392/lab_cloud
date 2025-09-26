@@ -1,16 +1,17 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 import psycopg2
+import os
 import base64
 
 app = FastAPI()
 
-conn = psycopg2.connect(
-    host="10.148.0.2",  # Internal IP ของ VM1
-    database="imagedb",
-    user="imguser",
-    password="KheeYes321"
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql://imguser:KheeYes321@db:5432/imagedb"
 )
+
+conn = psycopg2.connect(DATABASE_URL)
 
 @app.get("/", response_class=HTMLResponse)
 def index():

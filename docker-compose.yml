@@ -1,9 +1,25 @@
 services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: imguser
+      POSTGRES_PASSWORD: KheeYes321
+      POSTGRES_DB: imagedb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
   fastapi-app:
     build: .
+    depends_on:
+      - db
     ports:
       - "80:80"
+    environment:
+      - DATABASE_URL=postgresql://imguser:KheeYes321@db:5432/imagedb
     volumes:
       - .:/app
-    environment:
-      - PYTHONUNBUFFERED=1
+
+volumes:
+  db_data:
